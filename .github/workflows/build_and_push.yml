@@ -68,16 +68,19 @@ jobs:
       - name: Build frontend
         run: |
           mkdir -p /opt/sqlbot
-          docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output .
-          echo “===============================frontend complete”
-          cp -r ./web-build-output/opt/sqlbot/frontend /opt/sqlbot/frontend
-          rm -rf ./web-build-output
-          
+
           docker buildx build --target ssr-builder --output type=local,dest=./ssr-build-output . 
           echo “===============================ssr complete”
           ls -alt ./ssr-build-output/opt/sqlbot/g2-ssr
           cp -r ./ssr-build-output/opt/sqlbot/g2-ssr /opt/sqlbot/g2-ssr
           rm -rf ./ssr-build-output
+          
+          docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output .
+          echo “===============================frontend complete”
+          cp -r ./web-build-output/opt/sqlbot/frontend /opt/sqlbot/frontend
+          rm -rf ./web-build-output
+          
+          
           
       - name: Docker Buildx (build-and-push)
         run: |
