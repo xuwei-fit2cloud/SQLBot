@@ -14,7 +14,7 @@ ENV UV_LINK_MODE=copy
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Create necessary directories
-RUN ls -la ${UI_HOME}/dist && if [ -d "${UI_HOME}/dist" ]; then exit 0; fi && mkdir -p ${APP_HOME} ${UI_HOME}
+RUN if [ -d "${UI_HOME}/dist" ]; then ls -la ${UI_HOME}/dist && exit 0; fi && mkdir -p ${APP_HOME} ${UI_HOME}
 
 WORKDIR ${APP_HOME}
 
@@ -61,7 +61,7 @@ WORKDIR /app
 COPY g2-ssr/app.js g2-ssr/package.json /app/
 COPY g2-ssr/charts/* /app/charts/
 
-RUN ls -la /app/node_modules && if [ -d "/app/node_modules" ]; then exit 0; fi && npm install
+RUN if [ -d "/app/node_modules" ]; then ls -la /app/node_modules && exit 0; fi && npm install
 
 # Runtime stage
 FROM registry.cn-qingdao.aliyuncs.com/dataease/sqlbot-python-pg:latest
