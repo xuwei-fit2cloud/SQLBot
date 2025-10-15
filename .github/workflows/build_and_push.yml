@@ -65,6 +65,18 @@ jobs:
           registry: ${{ secrets.ALIYUN_REGISTRY_HOST }}
           username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
           password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
+      - name: Build frontend
+        run: |
+          docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output . -f installer/Dockerfile
+          ls -alt
+          cp -r ./web-build-output ./
+          rm -rf ./web-build-output
+          
+          docker buildx build --target ssr-builder --output type=local,dest=./ssr-build-output . -f installer/Dockerfile
+          ls -alt
+          cp -r ./ssr-build-output ./
+          rm -rf ./ssr-build-output
+          
       - name: Docker Buildx (build-and-push)
         run: |
           docker buildx build --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
