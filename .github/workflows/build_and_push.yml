@@ -67,6 +67,7 @@ jobs:
           password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
       - name: Build frontend
         run: |
+          mkdir -p /opt/sqlbot
           docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output . 
           cp -r ./web-build-output/opt/sqlbot/frontend /opt/sqlbot/frontend
           rm -rf ./web-build-output
