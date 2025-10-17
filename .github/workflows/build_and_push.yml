@@ -79,16 +79,16 @@ jobs:
           cp -r ssr/app ./g2-ssr
           rm -rf ssr ssr.tars
           
-          # docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output .
-          # echo “===============================frontend complete”
-          # cp -r ./web-build-output/opt/sqlbot/frontend /opt/sqlbot/frontend
-          # rm -rf ./web-build-output
+          docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output .
+          echo “===============================frontend complete”
+          ls -alt ./web-build-output/opt/sqlbot/frontend
+          rm -rf frontend
+          cp -r ./web-build-output/opt/sqlbot/frontend ./
+          rm -rf ./web-build-output
           
-          
-          
-      # - name: Docker Buildx (build-and-push)
-      #   run: |
-      #     docker buildx build --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
+      - name: Docker Buildx (build-and-push)
+        run: |
+          docker buildx build --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
 
   # build-and-push-to-dockerhub:
   #   if: ${{ contains(github.event.inputs.registry, 'dockerhub') }}
