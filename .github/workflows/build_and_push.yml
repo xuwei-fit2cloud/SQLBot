@@ -79,12 +79,12 @@ jobs:
           cp -r ssr/app ./g2-ssr
           rm -rf ssr ssr.tars
           
-          docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output,output=/opt/sqlbot/frontend .
+          docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output .
           echo “===============================frontend complete”
-          ls -alt ./web-build-output
+          ls -alt ./web-build-output/opt/sqlbot/frontend
           echo "---------------------111"
           ls -alt ./web-build-output/opt/sqlbot/frontend/dist
-          cp -r ./web-build-output/dist ./frontend/
+          cp -r ./web-build-output/opt/sqlbot/frontend/dist ./frontend/
           echo "-----------------------"
           ls -alt ./frontend
           rm -rf ./web-build-output
