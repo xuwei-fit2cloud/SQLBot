@@ -54,7 +54,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
    uv sync --extra cpu
 
 # Build g2-ssr
-FROM registry.cn-qingdao.aliyuncs.com/dataease/sqlbot-base:latest AS ssr-builder
+FROM node:24-alpine AS ssr-builder
 
 WORKDIR /app
 
