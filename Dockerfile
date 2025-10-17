@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY frontend /tmp/frontend
 
 # Create necessary directories
-RUN if [ -d "/opt/sqlbot/frontend/dist" ]; then exit 0; fi && mkdir -p ${UI_HOME}
+RUN ls -al /opt/sqlbot/frontend; if [ -d "/opt/sqlbot/frontend/dist" ]; then exit 0; fi && mkdir -p ${UI_HOME}
 
 RUN cd /tmp/frontend; npm install; npm run build; mv dist ${UI_HOME}/dist
 
@@ -51,7 +51,7 @@ WORKDIR /app
 
 COPY g2-ssr/* /app
 
-RUN if [ -d "/app/node_modules" ]; then exit 0; fi && npm install
+RUN ls -al /app; if [ -d "/app/node_modules" ]; then exit 0; fi && npm install
 
 # Runtime stage
 FROM registry.cn-qingdao.aliyuncs.com/dataease/sqlbot-python-pg:latest
