@@ -76,9 +76,7 @@ jobs:
           tar xf ./ssr.tar -C ssr
           echo “===============================unzip ssr”
           ls -alt ssr/app
-          echo “===============================g2-ssr”
-          ls -alt ssr/app/g2-ssr
-          cp -r ssr/app/g2-ssr ./g2-ssr
+          cp -r ssr/app ./g2-ssr
           rm -rf ssr ssr.tars
           
           # docker buildx build --target sqlbot-builder-frontend --output type=local,dest=./web-build-output .
