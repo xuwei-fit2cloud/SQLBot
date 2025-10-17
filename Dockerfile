@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY frontend /tmp/frontend
 
 # Create necessary directories
-RUN if [ -d "/tmp/frontend/dist" ]; then exit 0; fi && mkdir -p ${UI_HOME}
+RUN if [ -d "/opt/sqlbot/frontend/dist" ]; then exit 0; fi && mkdir -p ${UI_HOME}
 
 RUN cd /tmp/frontend; npm install; npm run build; mv dist ${UI_HOME}/dist
 
