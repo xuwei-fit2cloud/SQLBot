@@ -58,8 +58,9 @@ FROM registry.cn-qingdao.aliyuncs.com/dataease/sqlbot-base:latest AS ssr-builder
 
 WORKDIR /app
 
-COPY g2-ssr/app.js g2-ssr/package.json /app/
-COPY g2-ssr/charts/* /app/charts/
+COPY g2-ssr/* /app
+# COPY g2-ssr/app.js g2-ssr/package.json /app/
+# COPY g2-ssr/charts/* /app/charts/
 
 RUN if [ -d "/app/node_modules" ]; then ls -la /app/node_modules && exit 0; fi && npm install
 
