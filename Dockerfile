@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY frontend /tmp/frontend
 
 # Create necessary directories
-RUN ls -al /tmp/frontend/dist; if [ -d "/tmp/frontend/dist" ]; then mv /tmp/frontend/dist ${UI_HOME}/dist && exit 0; fi && mkdir -p ${UI_HOME}
+RUN ls -al /tmp/frontend/dist; if [ -d "/tmp/frontend/dist" ]; then mkdir -p ${UI_HOME}/dist && mv /tmp/frontend/dist ${UI_HOME}/dist && exit 0; fi && mkdir -p ${UI_HOME}
 
 RUN cd /tmp/frontend; npm install; npm run build; mv dist ${UI_HOME}/dist
 
