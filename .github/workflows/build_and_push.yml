@@ -73,7 +73,8 @@ jobs:
           echo “===============================ssr complete”
           ls -alt ./ssr.tar
           mkdir ssr
-          tar xvf ./ssr.tar -C ssr
+          tar xf ./ssr.tar -C ssr
+          echo “===============================unzip ssr”
           ls -alt ssr
           # cp -r ./ssr-build-output/opt/sqlbot/g2-ssr /opt/sqlbot/g2-ssr
           # rm -rf ./ssr-build-output
